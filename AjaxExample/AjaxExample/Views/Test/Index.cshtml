@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "AjaxRawJS";
+}
+
+
+
+<div id="scores">
+</div>
+<input type="button" value="Get scores from server using AJAX" onclick="getScores()" />
+
+
+@section scripts
+{
+    <script>
+        function getScores() {
+            var xmlHttp = new XMLHttpRequest(), async;
+
+            xmlHttp.onreadystatechange = function () {
+
+                @*
+                    readyState values :
+                    0 - request has not started
+                    1 - connected to the server
+                    2 - server has recived the request
+                    3 - server is processing
+                    4 - request is finished and data is ready
+
+                *@
+                if ((xmlHttp.readyState == 4) && (xmlHttp.status == 200)) {
+                    document.getElementById('scores').innerHTML = xmlHttp.responseText;
+                } else {
+                    document.getElementById('scores').innerHTML = "<strong>Waiting for server response ... </strong>";
+                }
+            }
+
+            xmlHttp.open("GET", "/Test/AjaxRawJS", async = true);
+            xmlHttp.send();
+        }
+    </script>
+}

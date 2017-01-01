@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "_GetScorePartial";
+    var rand = new Random();
+}
+
+<h2>Scores from server</h2>
+@for (var i = 0; i < 3; i++)
+{
+    <h5>@rand.Next(5):@rand.Next(5)</h5>
+}

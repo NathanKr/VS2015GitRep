@@ -16,7 +16,7 @@ namespace AjaxExample.Controllers
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private ApplicationUserManager _userManager; 
 
         public AccountController()
         {

@@ -1,20 +1,98 @@
-﻿
+﻿@model  AjaxExample.Models.TestModel
+
 @{
-    ViewBag.Title = "AjaxRawJS";
+    ViewBag.Title = "AjaxRawJs";
 }
 
 
 
 <div id="scores">
 </div>
-<input type="button" value="Get scores from server using AJAX" onclick="getScores()" />
+
+<hr/>
+<h2>1)</h2>
+<input type="button" value="Get scores using AJAX" onclick="getScores()" />
+
+<hr />
+
+<h2>2)</h2>
+<form id="submitForm" method="post" action="/Test/AjaxRawJsInForm" onsubmit="submitFormAjax(event)">
+    <label for="idScoresNum">Number of scores</label>
+    <input type="number" id="idScoresNum" min="0" step="1" name="ScoresNum"/>
+    <div>
+        <input type="submit" value="Get scores using form & AJAX" />
+    </div>
+</form>
+
+<hr />
+
+<h2>3)</h2>
+@using (Html.BeginForm("AjaxRawJsInForm", "Test", FormMethod.Post,
+                new { @class = "form-horizontal",  role = "form", onsubmit = "submitFormAjax(event)" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ScoresNum, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.ScoresNum, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ScoresNum, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Get scores using BeginForm & AJAX" />
+        </div>
+    </div>
+}
+
 
 
 @section scripts
 {
     <script>
+        
+        function submitFormAjax(e) {
+            var form = e.target;
+
+            e.preventDefault(); @*  click on submit will not send the form , we overide it here  *@
+            e.stopImmediatePropagation(); @*  only one handler will be invoked  *@
+
+
+            @* following line is CRUCIAL - it will show validation error when form is submitted *@
+            $(form).valid();
+            
+
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open(form.method, form.action); @* use form action and method *@
+
+            xmlHttp.onreadystatechange = function () {
+
+                @*
+                    readyState values :
+                0 - request has not started
+                1 - connected to the server
+                2 - server has recived the request
+                3 - server is processing
+                4 - request is finished and data is ready
+
+            *@
+                if ((xmlHttp.readyState == 4) && (xmlHttp.status == 200)) {
+                    document.getElementById('scores').innerHTML = xmlHttp.responseText;
+                } else {
+                    document.getElementById('scores').innerHTML = "<strong>Waiting for server response ... </strong>";
+                }
+            }
+
+
+            xmlHttp.send(new FormData(form)); @* send form data as part of ajax *@
+        }
+        
         function getScores() {
-            var xmlHttp = new XMLHttpRequest(), async;
+            var xmlHttp = new XMLHttpRequest();
 
             xmlHttp.onreadystatechange = function () {
 
@@ -34,8 +112,41 @@
                 }
             }
 
-            xmlHttp.open("GET", "/Test/AjaxRawJS", async = true);
+            xmlHttp.open("GET", "/Test/AjaxRawJs");
             xmlHttp.send();
         }
+
+
+        @*  window.addEventListener("submit", function (e) {
+            var form = e.target;
+            if (form.getAttribute("enctype") === "multipart/form-data") {
+                if (form.dataset.ajax) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    var xhr = new XMLHttpRequest();
+                    xhr.open(form.method, form.action);
+
+                    xhr.oncomplete = function () {
+                        alert("oncomplete");
+                    }
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            if (form.dataset.ajaxUpdate) {
+                                var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
+                                if (updateTarget) {
+                                    updateTarget.innerHTML = xhr.responseText;
+                                }
+                            }
+                        }
+                    };
+                    xhr.send(new FormData(form));
+                }
+            }
+        }, true);*@
+
+
+
+
     </script>
 }

@@ -16,7 +16,7 @@
 <hr />
 
 <h2>2)</h2>
-<form id="submitForm" method="post" action="/Test/AjaxRawJsInForm" onsubmit="submitFormAjax(event)">
+<form id="submitForm" method="post" action="/Test/AjaxRawJsInForm" onsubmit="submitFormAjax(event, 'scores')">
     <label for="idScoresNum">Number of scores</label>
     <input type="number" id="idScoresNum" min="0" step="1" name="ScoresNum"/>
     <div>
@@ -28,7 +28,7 @@
 
 <h2>3)</h2>
 @using (Html.BeginForm("AjaxRawJsInForm", "Test", FormMethod.Post,
-                new { @class = "form-horizontal",  role = "form", onsubmit = "submitFormAjax(event)" }))
+                new { @class = "form-horizontal",  role = "form", onsubmit = "submitFormAjax(event,'scores')" }))
 {
     @Html.AntiForgeryToken()
 
@@ -55,9 +55,8 @@
 {
     <script>
         
-        function submitFormAjax(e) {
-            var form = e.target;
-
+        function submitFormAjax(e,addAfterThisId) {
+            var form = e.target,xmlHttp = new XMLHttpRequest(), idAfter = "#" + addAfterThisId;
             e.preventDefault(); @*  click on submit will not send the form , we overide it here  *@
             e.stopImmediatePropagation(); @*  only one handler will be invoked  *@
 
@@ -65,8 +64,6 @@
             @* following line is CRUCIAL - it will show validation error when form is submitted *@
             $(form).valid();
             
-
-            var xmlHttp = new XMLHttpRequest();
             xmlHttp.open(form.method, form.action); @* use form action and method *@
 
             xmlHttp.onreadystatechange = function () {
@@ -81,10 +78,8 @@
 
             *@
                 if ((xmlHttp.readyState == 4) && (xmlHttp.status == 200)) {
-                    document.getElementById('scores').innerHTML = xmlHttp.responseText;
-                } else {
-                    document.getElementById('scores').innerHTML = "<strong>Waiting for server response ... </strong>";
-                }
+                    $(idAfter).after(xmlHttp.responseText);
+                } 
             }
 
 

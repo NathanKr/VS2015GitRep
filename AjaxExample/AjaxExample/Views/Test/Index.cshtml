@@ -78,6 +78,8 @@
 
             *@
                 if ((xmlHttp.readyState == 4) && (xmlHttp.status == 200)) {
+                    alert(idAfter);
+                    alert(xmlHttp.responseText);
                     $(idAfter).after(xmlHttp.responseText);
                 } 
             }

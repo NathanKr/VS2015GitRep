@@ -1,12 +1,13 @@
-﻿using System;
+﻿using AspAjaxProgress.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AspMvcWithWebApi.Controllers
+namespace AspAjaxProgress.Controllers
 {
-    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -18,8 +19,6 @@ namespace AspMvcWithWebApi.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            throw new Exception("Junk");
-
             return View();
         }
 
@@ -28,6 +27,12 @@ namespace AspMvcWithWebApi.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult CallMeAjax()
+        {
+            Thread.Sleep(5000);
+            return ReportUtils.GetAjaxOk();
         }
     }
 }

@@ -22,6 +22,7 @@ namespace AjaxExample.Controllers
         // GET: AjaxRawJsInForm
         public ActionResult AjaxRawJsInForm(int ScoresNum)
         {
+            System.Threading.Thread.Sleep(2000);
             return PartialView("_GetScorePartial", new TestModel()
             {
                 ScoresNum = ScoresNum

@@ -11,7 +11,7 @@
 
 <hr/>
 <h2>1)</h2>
-<input type="button" value="Get scores using AJAX" onclick="getScores()" />
+<input type="button" value="Get scores using XMLHttpRequest" onclick="getScores()" />
 
 <hr />
 
@@ -20,7 +20,7 @@
     <label for="idScoresNum">Number of scores</label>
     <input type="number" id="idScoresNum" min="0" step="1" name="ScoresNum"/>
     <div>
-        <input type="submit" value="Get scores using form & AJAX" />
+        <input type="submit" value="Get scores using form & submitFormAjax" />
     </div>
 </form>
 
@@ -28,7 +28,8 @@
 
 <h2>3)</h2>
 @using (Html.BeginForm("AjaxRawJsInForm", "Test", FormMethod.Post,
-                new { @class = "form-horizontal",  role = "form", onsubmit = "submitFormAjax(event,'scores')" }))
+                new { @class = "form-horizontal",  role = "form",
+                    onsubmit = "submitFormAjax(event,'scores')" }))
 {
     @Html.AntiForgeryToken()
 
@@ -44,7 +45,45 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Get scores using BeginForm & AJAX" />
+            <input type="submit" class="btn btn-default" value="Get scores using Html.BeginForm & submitFormAjax" />
+        </div>
+    </div>
+}
+
+<div id="loading" style="display:none;">
+    Loading ...
+</div>
+
+<h2>4)</h2>
+@using (Ajax.BeginForm("AjaxRawJsInForm",   // -- action 
+                        "Test",             // -- controller
+                        null,               // -- route value
+                        new AjaxOptions
+                        {
+                            HttpMethod = "Post",
+                            InsertionMode = InsertionMode.InsertAfter,
+                            UpdateTargetId = "scores" ,
+                            Confirm = "Do you confirm this request ?",
+                            LoadingElementId = "loading" ,
+                            OnBegin = "ajaxBegin" ,
+                            OnComplete = "ajaxComplete"
+                        }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ScoresNum, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.ScoresNum, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ScoresNum, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Get scores using Ajax.BeginForm" />
         </div>
     </div>
 }
@@ -55,6 +94,15 @@
 {
     <script>
         
+        function ajaxBegin()
+        {
+            alert("Begin");
+        }
+
+        function ajaxComplete() {
+            alert("Complete");
+        }
+
         function submitFormAjax(e,addAfterThisId) {
             var form = e.target,xmlHttp = new XMLHttpRequest(), idAfter = "#" + addAfterThisId;
             e.preventDefault(); @*  click on submit will not send the form , we overide it here  *@
@@ -78,8 +126,6 @@
 
             *@
                 if ((xmlHttp.readyState == 4) && (xmlHttp.status == 200)) {
-                    alert(idAfter);
-                    alert(xmlHttp.responseText);
                     $(idAfter).after(xmlHttp.responseText);
                 } 
             }
@@ -114,36 +160,8 @@
         }
 
 
-        @*  window.addEventListener("submit", function (e) {
-            var form = e.target;
-            if (form.getAttribute("enctype") === "multipart/form-data") {
-                if (form.dataset.ajax) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-                    var xhr = new XMLHttpRequest();
-                    xhr.open(form.method, form.action);
-
-                    xhr.oncomplete = function () {
-                        alert("oncomplete");
-                    }
-
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState == 4 && xhr.status == 200) {
-                            if (form.dataset.ajaxUpdate) {
-                                var updateTarget = document.querySelector(form.dataset.ajaxUpdate);
-                                if (updateTarget) {
-                                    updateTarget.innerHTML = xhr.responseText;
-                                }
-                            }
-                        }
-                    };
-                    xhr.send(new FormData(form));
-                }
-            }
-        }, true);*@
-
-
-
 
     </script>
 }
+
+

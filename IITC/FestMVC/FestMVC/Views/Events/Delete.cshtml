@@ -1,0 +1,80 @@
+﻿@model FestMvc.Models.Event
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Festival1Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Festival1Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstructorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstructorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

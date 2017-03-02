@@ -1,0 +1,29 @@
+﻿@using FestMVC.Logic;
+@using FestMVC.Models;
+@model IEnumerable<ApplicationUser>
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+@foreach (var user in @Model)
+{
+    <img src="@Url.Content("~/" + @Utils.GetUserImagePath(user))"/>
+}
+
+
+@section Styles
+{
+    <style>    
+    
+    img
+    {
+        width:200px;
+        height:200px;
+    }
+
+    </style>
+}

@@ -1,0 +1,82 @@
+﻿@using Test.Models;
+@model ViewModelAddThree
+
+
+@{
+    ViewBag.Title = "GetAdd";
+}
+
+<h2>GetAdd</h2>
+
+<p style="display:none;" id="loading">Loading ...</p>
+<div id="MyId"></div>
+
+@using (Ajax.BeginForm("AjaxAdd", "Cont1",
+                null,
+                new AjaxOptions
+                {
+                    HttpMethod = "Post",
+                    InsertionMode = InsertionMode.InsertAfter,
+                    UpdateTargetId = "MyId",
+                    OnBegin = "ajaxBegin" ,
+                    OnComplete = "ajaxComplete",
+                    Confirm = "Are You sure ?" ,
+                    LoadingElementId = "loading"
+
+                },
+                new { @class = "form-horizontal",
+                    role = "form" }))
+{
+    <h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Number1, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Number1,
+           new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Number2, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Number2,
+           new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Number3, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Number3,
+           new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit"
+                   class="btn btn-default"
+                   value="Submit" />
+        </div>
+    </div>
+}
+
+
+
+@section Scripts
+{
+    <script>
+        function ajaxBegin()
+        {
+            alert("Begin");
+        }
+
+        function ajaxComplete()
+        {
+            alert("Complete");
+        }
+    </script>    
+}

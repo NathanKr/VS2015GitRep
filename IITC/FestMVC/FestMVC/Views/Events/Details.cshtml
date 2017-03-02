@@ -1,0 +1,74 @@
+﻿@model FestMvc.Models.Event
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Festival1Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Festival1Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstructorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstructorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -41,7 +41,9 @@ Purpose :
 
 3. add form validation as done in BeginForm
 
-	same as 2) but here i use Html.BeginForm with validation . ajax is used exactly as in 1),2)
+	same as 2) but here i use Html.BeginForm with validation . ajax is used as in 1),2) but here i add also :
+	loading indication and sucess \ failure alert (bootstrap)
+
 	BeginForm is easy with respect to following :
 	- no need to provide url , instead give action and controller
 
@@ -57,7 +59,6 @@ Purpose :
 
 	SOLUTION - add $(form).valid() to the submit method - submitFormAjax
 
-	
 
 Remarks
 	Ajax.BeginForm does not work properly with file upload , this is why i need to use XMLHttpRequest.
@@ -65,3 +66,6 @@ Remarks
 	to upload file you need :
 	- input tag with type file
 	- add attribute enctype = "multipart/form-data"
+
+
+4. same as 3) but here i use Ajax.BeginForm

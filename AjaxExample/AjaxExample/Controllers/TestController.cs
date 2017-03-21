@@ -24,9 +24,10 @@ namespace AjaxExample.Controllers
         {
             System.Threading.Thread.Sleep(2000);
             return PartialView("_GetScorePartial", new TestModel()
-            {
-                ScoresNum = ScoresNum
-            });
+             {
+                 ScoresNum = ScoresNum
+             });
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.InternalServerError);
         }
 
         

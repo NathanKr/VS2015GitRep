@@ -4,6 +4,14 @@
     ViewBag.Title = "AjaxRawJs";
 }
 
+<div id="ajaxSuccess" class="alert alert-success alert-dismissable">
+    
+</div>
+
+<div id="ajaxFailure" class="alert alert-danger alert-dismissable">
+    
+</div>
+
 
 
 <div id="scores">
@@ -29,7 +37,8 @@
 <h2>3)</h2>
 @using (Html.BeginForm("AjaxRawJsInForm", "Test", FormMethod.Post,
                 new { @class = "form-horizontal",  role = "form",
-                    onsubmit = "submitFormAjax(event,'scores')" }))
+                    onsubmit = "submitFormAjax(event,'scores','loading','ajaxSuccess','ajaxFailure','success','failure')"
+                }))
 {
     @Html.AntiForgeryToken()
 
@@ -89,13 +98,27 @@
 }
 
 
+@section styles
+{
+    <style>
+        
+        #ajaxSuccess {
+            display: none;
+        }
+
+        #ajaxFailure
+        {
+            display: none;
+        }
+
+    </style>
+}
 
 @section scripts
 {
     <script>
-        
-        function ajaxBegin()
-        {
+
+        function ajaxBegin() {
             alert("Begin");
         }
 
@@ -103,15 +126,36 @@
             alert("Complete");
         }
 
-        function submitFormAjax(e,addAfterThisId) {
-            var form = e.target,xmlHttp = new XMLHttpRequest(), idAfter = "#" + addAfterThisId;
+        function submitFormAjax(e, addAfterThisId, loaderId,
+            successId, failureId, successMessage, failureMessage) {
+
+            if (successId) {
+                $("#" + successId).hide();
+            }
+
+            if (failureId) {
+                $("#" + failureId).hide();
+            }
+
+            var form = e.target, xmlHttp = new XMLHttpRequest(), 
+                idJQueryAfter = "#" + addAfterThisId ,
+                idJQueryLoader = "#" + loaderId, 
+                idJQueryFailureId = "#" + failureId ,
+                idJQuerySuccessId = "#" + successId;
             e.preventDefault(); @*  click on submit will not send the form , we overide it here  *@
             e.stopImmediatePropagation(); @*  only one handler will be invoked  *@
 
 
+
             @* following line is CRUCIAL - it will show validation error when form is submitted *@
-            $(form).valid();
-            
+            // following line is CRUCIAL - it will show validation error when form is submitted 
+            if ($(form).valid()) {
+                if (loaderId) {
+                    console.log(name + " show loader");
+                    $(idJQueryLoader).show();
+                }
+            }
+
             xmlHttp.open(form.method, form.action); @* use form action and method *@
 
             xmlHttp.onreadystatechange = function () {
@@ -124,16 +168,56 @@
                 3 - server is processing
                 4 - request is finished and data is ready
 
-            *@
-                if ((xmlHttp.readyState == 4) && (xmlHttp.status == 200)) {
-                    $(idAfter).after(xmlHttp.responseText);
-                } 
+                    status values :
+                    
+                200 - OK
+                400 - bad request
+                500 - internal error
+
+                *@
+                console.log(" readyState : " + xmlHttp.readyState + " status : " + xmlHttp.status);
+               
+                
+
+                if (xmlHttp.status == 200) {
+                    if (xmlHttp.readyState == 4) {
+                        // -- it is ok
+                        console.log("Success !! ");
+
+                        if (loaderId) {
+                            console.log(name + " hide loader");
+                            $(idJQueryLoader).hide();
+                        }
+
+                        if (addAfterThisId) {
+                            $(idJQueryAfter).after(xmlHttp.responseText);
+                        }
+
+
+                        if (successId) {
+                            $(idJQuerySuccessId).show();
+                            $(idJQuerySuccessId).html(successMessage);
+                        }
+                    }
+                } else {
+                    // -- it is failure
+                    if (loaderId) {
+                        console.log(name + " hide loader");
+                        $(idJQueryLoader).hide();
+                    }
+
+                    if (failureId) {
+                        $(idJQueryFailureId).show();
+                        $(idJQueryFailureId).html(failureMessage);
+                    }
+                    console.log("Error !! ");
+                }
             }
 
 
             xmlHttp.send(new FormData(form)); @* send form data as part of ajax *@
         }
-        
+
         function getScores() {
             var xmlHttp = new XMLHttpRequest();
 

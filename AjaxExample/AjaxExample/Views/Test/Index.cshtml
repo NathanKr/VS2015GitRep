@@ -5,11 +5,13 @@
 }
 
 <div id="ajaxSuccess" class="alert alert-success alert-dismissable">
-    
+    @* will be overide by successMessage if not null*@
+    <strong>Success !</strong>
 </div>
 
 <div id="ajaxFailure" class="alert alert-danger alert-dismissable">
-    
+    @* will be override by failureMessage if not null *@
+    <strong>Failure !</strong>
 </div>
 
 
@@ -129,6 +131,12 @@
         function submitFormAjax(e, addAfterThisId, loaderId,
             successId, failureId, successMessage, failureMessage) {
 
+                var form = e.target, xmlHttp = new XMLHttpRequest(),
+                    idJQueryAfter = "#" + addAfterThisId,
+                    idJQueryLoader = "#" + loaderId,
+                    idJQueryFailureId = "#" + failureId,
+                    idJQuerySuccessId = "#" + successId;
+
             if (successId) {
                 $("#" + successId).hide();
             }
@@ -137,11 +145,7 @@
                 $("#" + failureId).hide();
             }
 
-            var form = e.target, xmlHttp = new XMLHttpRequest(), 
-                idJQueryAfter = "#" + addAfterThisId ,
-                idJQueryLoader = "#" + loaderId, 
-                idJQueryFailureId = "#" + failureId ,
-                idJQuerySuccessId = "#" + successId;
+
             e.preventDefault(); @*  click on submit will not send the form , we overide it here  *@
             e.stopImmediatePropagation(); @*  only one handler will be invoked  *@
 

@@ -15,6 +15,7 @@ namespace ConsoleIntroduction
 
             while(a > 0)
             {
+                Console.Write("Please enter a number (0 or negative to quit) and click enter \n");
                 string strLine = Console.ReadLine();
                 if (float.TryParse(strLine, out a))
                 {
@@ -41,7 +42,6 @@ namespace ConsoleIntroduction
                 else
                 {
                     Console.Write("error ! please insert only number\n");
-                    a = 1;//so it will continue
                 }
             } 
         }

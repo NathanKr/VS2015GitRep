@@ -11,19 +11,19 @@ namespace ConsoleIntroduction
         
         static void Main(string[] args)
         {
-            float fMax = 0,a=1;
+            float fMax = 0,fNum=1;
 
-            while(a > 0)
+            while(fNum > 0)
             {
                 Console.Write("Please enter a number (0 or negative to quit) and click enter \n");
                 string strLine = Console.ReadLine();
-                if (float.TryParse(strLine, out a))
+                if (float.TryParse(strLine, out fNum))
                 {
-                    if (a > 0)
+                    if (fNum > 0)
                     {
-                        if (a > fMax)
+                        if (fNum > fMax)
                         {
-                            fMax = a;
+                            fMax = fNum;
                         }
                     }
                     else

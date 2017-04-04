@@ -8,11 +8,10 @@ namespace ConsoleIntroduction
 {
     class Program
     {
-        
         static void Main(string[] args)
         {
             float fMax = 0,fNum=1;
-
+  
             while(fNum > 0)
             {
                 Console.Write("Please enter a number (0 or negative to quit) and click enter \n");

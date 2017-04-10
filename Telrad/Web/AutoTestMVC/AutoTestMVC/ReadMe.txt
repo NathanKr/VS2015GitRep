@@ -1,10 +1,18 @@
-﻿This is currently mostly client side , it support automatic test.
-Test is composed of few question with few answers per question(one of them is correct) 
+﻿Functionality :
+-----------------
+This is currently mostly client side , it support automatic test.
+Test is composed of few questions with few answers per question(one of them is correct) 
 Test results appears in terms of number of correct answers and pass \ failed test
+
+
+Technical :
+-------------
+Point of interest :
+The list from server is consumed in client java script code via @Html.Raw(Json.Encode(Model))
 
 Server is very primitive :
 	- Index controller is used
-	- list of question and answerd is "hard code" in action Index()
+	- list of question and answers is "hard code" in action Index()
 
 
 
@@ -14,7 +22,7 @@ Technologies :
 
 
 Future improvments :
-
+---------------------
 server :
 	- dedicated controller : AutoTest with matching CRUD  actions and views using scafolded
 	- use entity framework code first

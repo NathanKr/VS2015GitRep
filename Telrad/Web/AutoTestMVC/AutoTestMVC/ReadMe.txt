@@ -16,14 +16,15 @@ Technologies :
 Future improvments :
 
 server :
-	- dedicated controller : AutoTest with matching CRUD as actions and views using scafolded
+	- dedicated controller : AutoTest with matching CRUD  actions and views using scafolded
 	- use entity framework code first
 	- support AutoTest enrollment (for user\password authentication)
 
 
-client ;
+client :
 	- indication for correct \ not correct answer in result
 	- put qa in bootstrap panel
+	- do not allow radio button selection change
 	- use ajax to get questions on start and ajax to get answers on end (so it will not be in html) 
 		this will require also server side code 
 

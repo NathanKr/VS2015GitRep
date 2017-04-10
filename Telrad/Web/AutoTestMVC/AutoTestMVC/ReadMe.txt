@@ -33,6 +33,7 @@ client :
 	- indication for correct \ not correct answer in result
 	- put qa in bootstrap panel
 	- do not allow radio button selection change
+	- collapsable bootstrap result
 	- use ajax to get questions on start and ajax to get answers on end (so it will not be in html) 
 		this will require also server side code 
 

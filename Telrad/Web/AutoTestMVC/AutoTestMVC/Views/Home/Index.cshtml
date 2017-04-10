@@ -1,0 +1,301 @@
+﻿@using AutoTestMVC.Models;
+@model IList<QaQuizViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+
+}
+
+<div id="qa">
+    @* header *@
+    <label id="qustion"></label>
+
+    @* body *@
+    <div id="answers">
+    </div>
+
+    @* footer *@
+    <button id="btPrev" onclick="prevQuestion()"></button>
+    <button id="btNext" onclick="nextQuestion()"></button>
+    <label id="answeredOutOf"></label>
+</div>
+
+<div id="result">
+    @* header *@
+    <label id="resultHead"></label>
+
+    @* body  - here go the list of qa with answers *@
+    <div id="resultBody">
+
+    </div>
+
+    @* footer *@
+    <label id="resultFooter"></label>
+    <button onclick="startOver()">התחל מחדש</button>
+</div>
+
+
+
+@section scripts
+{
+
+    <script>
+        var currentQutionIndex, // zero based
+            arrayModelJS = @Html.Raw(Json.Encode(Model)),
+            questionLabel = document.getElementById("qustion"),
+            answersDiv = document.getElementById("answers"),
+            answeredOutOfLabel = document.getElementById("answeredOutOf"),
+            btPrev = document.getElementById("btPrev"),
+            btNext = document.getElementById("btNext"),
+            resultBody = document.getElementById("resultBody");
+            resultHead = document.getElementById("resultHead");
+            resultFooter = document.getElementById("resultFooter");
+        arrayAnswers = new Array(), // hold the zero based of answer for this question
+            strCheckResult = "בדוק תוצאות",
+            strNext = "הבא",
+            strPrev = "הקודם";
+            passGrade = 80;
+
+        init();
+        showCurrentQuestionAndAnswers();
+
+        function startOver() {
+            init();
+            showCurrentQuestionAndAnswers();
+        }
+
+        function showResult() {
+            // this is important : you MUST loop over currentQutionIndex !!!
+
+            for (   currentQutionIndex = 0;
+                    currentQutionIndex < arrayModelJS.length ;
+                    currentQutionIndex++) {
+                var questionLabelResult = document.createElement("label");
+                resultBody.appendChild(questionLabelResult);
+                var answersDivResult = document.createElement("div");
+                resultBody.appendChild(answersDivResult);
+                showCurrentQuestionAndAnswersEngine(questionLabelResult, answersDivResult);
+            }
+
+            var nCorrectAnswers = getCorrectAnswers();
+            var grade = 100 * nCorrectAnswers / arrayModelJS.length;
+            resultHead.innerHTML = "ענית נכון על" + " " + nCorrectAnswers + " "+ "שאלות מתוך" + " " + arrayModelJS.length;
+
+            if (testPassed(grade)) {
+                resultFooter.innerHTML = "כל הכבוד ! עברת את המבחן בהצלחה";
+            } else {
+                resultFooter.innerHTML = "לא עברת את המבחן. חזור על חומר השיעור ונסה שוב";
+            }
+        }
+
+        function testPassed(nGrade) {
+            return (nGrade >= passGrade);
+        }
+
+        function getCorrectAnswers() {
+            var nCorrectAnswers = 0;
+
+            for (var i = 0; i < arrayModelJS.length ; i++) {
+                if (arrayModelJS[i].CorrectAnswerIndex === arrayAnswers[i]) {
+                    nCorrectAnswers++;
+                }
+            }
+
+            return nCorrectAnswers;
+        }
+
+        function clearResultDiv() {
+            resultHead.innerHTML = resultBody.innerHTML = resultFooter.innerHTML = "";
+        }
+
+        function init() {
+            btNext.innerHTML = strNext;
+            btPrev.innerHTML = strPrev;
+            clearResultDiv();
+            $("#result").hide();
+            $("#qa").show();
+            currentQutionIndex = 0;
+            for (var i = 0; i < arrayModelJS.length; i++) {
+                arrayAnswers[i] = indexNotValid();
+            }
+        }
+
+        function doesAllQuestionsHaveSomeAnswer() {
+            for (var i = 0; i < arrayAnswers.length; i++) {
+                if (arrayAnswers[i] === indexNotValid()) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function canCheckAnswers() {
+            return doesAllQuestionsHaveSomeAnswer();
+        }
+
+        function indexNotValid() {
+            return -1;
+        }
+
+        function debugWriteModel() {
+            for (var i = 0; i < arrayModelJS.length; i++) {
+                console.log(arrayModelJS[i].Question);
+                console.log(arrayModelJS[i].CorrectAnswerIndex);
+                for (var j = 0; j < arrayModelJS[i].Answers.length; j++) {
+                    console.log(arrayModelJS[i].Answers[j]);
+                }
+            }
+        }
+
+        function getCurrentArrayModelJsItem() {
+            return arrayModelJS[currentQutionIndex];
+        }
+
+
+        function getAnswersRadioButtonGroupName() {
+            return "Answers" + currentQutionIndex;
+        }
+
+
+        // -1 is return when nothing selected
+        function getSelectedAnswerIndex() {
+            var first = ":radio[name='"+getAnswersRadioButtonGroupName()+"']";
+            var second = first + ":checked";
+
+
+            var radioIdx = $(first).index($(second));
+
+            console.log("Selected zero based answer index : " + radioIdx);
+
+            return radioIdx;
+        }
+
+
+        function setAnswerIn_arrayAnswers() {
+            console.log("Question zero based index : " + currentQutionIndex);
+
+            arrayAnswers[currentQutionIndex] = getSelectedAnswerIndex();
+        }
+
+        // --- notice currentQutionIndex
+        function showCurrentQuestionAndAnswersEngine(oQuestionLabel , oAnswersDiv) {
+
+            oQuestionLabel.innerHTML =  getcurrentQutionNumber() + ".  "+ getCurrentArrayModelJsItem().Question ;
+            oAnswersDiv.innerHTML = "";
+
+            for (var i = 0; i < getCurrentArrayModelJsItem().Answers.length; i++) {
+                oAnswersDiv.appendChild(document.createElement("br"));
+
+                var newRadioButtonAnswers = document.createElement("input");
+                newRadioButtonAnswers.setAttribute("type", "radio");
+                newRadioButtonAnswers.setAttribute("name", getAnswersRadioButtonGroupName());
+                newRadioButtonAnswers.setAttribute("value", i);
+                if (i === arrayAnswers[currentQutionIndex]) {
+                    newRadioButtonAnswers.checked = true;
+                }
+
+                var id = "rb_" + currentQutionIndex+"_"+ i;
+                newRadioButtonAnswers.setAttribute("id", id);
+
+                oAnswersDiv.appendChild(newRadioButtonAnswers);
+
+                var label = document.createElement("label");
+                label.setAttribute("for", id);
+                label.innerHTML = (i+1) + ") "+ getCurrentArrayModelJsItem().Answers[i];
+                oAnswersDiv.appendChild(label);
+            }
+        }
+
+        function showCurrentQuestionAndAnswers() {
+            answeredOutOfLabel.innerHTML = arrayModelJS.length + " / " + getcurrentQutionNumber();
+
+            showCurrentQuestionAndAnswersEngine(questionLabel, answersDiv);
+        }
+
+        function getcurrentQutionNumber() {
+            return (currentQutionIndex + 1);
+        }
+
+        function prevQuestion() {
+            if (currentQutionIndex > 0) {
+                setAnswerIn_arrayAnswers();
+
+                currentQutionIndex--;
+                showCurrentQuestionAndAnswers();
+                if (btNext.innerHTML === strCheckResult) {
+                    btNext.innerHTML = strNext;
+                }
+            } else {
+                console.log("can not go back we are on last");
+            }
+        }
+
+
+        function nextQuestion() {
+            // done anyway
+            setAnswerIn_arrayAnswers();
+
+            if (currentQutionIndex < (arrayModelJS.length - 1)) {
+
+                currentQutionIndex++;
+                showCurrentQuestionAndAnswers();
+            } else {
+                if (doesAllQuestionsHaveSomeAnswer()) {
+                    console.log("can not go next we are on last");
+                    if (btNext.innerHTML === strCheckResult) {
+
+                        $("#qa").hide();
+                        $("#result").show();
+                        showResult();
+                    } else {
+                        btNext.innerHTML = strCheckResult;
+                    }
+                } else {
+                    // start over but do not erase previous result
+                    currentQutionIndex = 0;
+                    showCurrentQuestionAndAnswers();
+                }
+
+            }
+        }
+
+    </script>
+
+}
+
+
+@section styles
+{
+    <style>
+        #resultHead {
+            margin-top: 30px;
+        }
+
+        #answeredOutOf {
+            margin-right: 150px;
+        }
+
+        #qustion {
+            font-weight: bold;
+            font-size: 150%;
+        }
+
+
+        #qa {
+            margin: 30px;
+        }
+
+        div, label {
+            direction: rtl;
+        }
+
+        input[type="radio"] {
+            margin-left: 40px;
+        }
+
+        button {
+            margin: 20px;
+        }
+    </style>
+}

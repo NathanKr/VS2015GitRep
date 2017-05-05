@@ -1,9 +1,9 @@
 ﻿Invoke Index.cshtml inside Views\Test
 
 Purpose :
-1. show simple ajax (based on https://www.youtube.com/watch?v=qqRiDlm-SnY) consumed by controller
+ show simple ajax (based on https://www.youtube.com/watch?v=qqRiDlm-SnY) consumed by controller
 
-	GET Controller\Action -> Test\AjaxRawJs which retuen _GetScorePartial.cshtml with 3 random scrores
+1.	GET Controller\Action -> Test\AjaxRawJs which retuen _GetScorePartial.cshtml with 3 random scrores
 
 	View -> Index.cshtml there you have button "Get scores using AJAX" which access Test\AjaxRawJs using ajax
 
@@ -69,3 +69,4 @@ Remarks
 
 
 4. same as 3) but here i use Ajax.BeginForm
+

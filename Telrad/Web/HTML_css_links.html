@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>CSS Links</title>
+    <style>
+        a {
+            margin: 20px;
+            padding: 10px 30px;
+            float: left;
+        }
+
+        .noHorizontalPadding {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+
+        #idSimple:hover {
+            color: lightblue;
+        }
+
+
+        #idNoDefaultUnderLIne {
+            text-decoration: none;
+            color: green;
+        }
+
+        
+
+        #idNoDefaultUnderLIne:hover {
+            text-decoration: underline;
+            color: lightgreen;
+        }
+
+        #idBorder {
+            border: 1px double #4caf50;
+            text-decoration: none;
+        }
+
+        
+        #idBorder:hover {
+            background-color: #4CAF50;
+        }
+
+        #idBackground {
+            color: white;
+            background-color: #e56262;
+            text-decoration: none;
+        }
+
+
+        #idBackground:hover {
+            background-color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <a id="idSimple" class="noHorizontalPadding" href="#">Link 1</a>
+    <a id="idNoDefaultUnderLIne" class="noHorizontalPadding" href="#">Link 2</a>
+    <a id="idBorder">Link 3</a>
+    <a id="idBackground" href="#">Link 4</a>
+
+</body>
+</html>

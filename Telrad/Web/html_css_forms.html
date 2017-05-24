@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Style</title>
+    <style>
+        
+        div {
+            background-color: #F2F2F2;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+        }
+
+       
+        /* multiple selector : select input and select */
+         input , select {
+             width: 100%;
+             padding: 10px;
+             margin: 10px 0;
+             /* border and padding are included in height\width */
+             box-sizing: border-box;
+             border: 1px solid #cbd4db;
+             border-radius: 5px;
+         }
+
+         input[type="submit"]:hover {
+             background-color: lightblue;
+             cursor: pointer;
+         }
+
+         input[type="submit"] {
+             background-color: #286090;
+             color: white;
+         }
+    </style>
+</head>
+<body>
+    
+    <h3>Using CSS to style an HTML Form</h3>
+
+    <div>
+        <form action="/some_action_page.asp">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+            <label for="country">Country</label>
+            <select id="country" name="country">
+                <option value="israel" selected="">Israel</option>
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="usa">USA</option>
+            </select>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+</html>

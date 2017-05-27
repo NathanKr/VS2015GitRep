@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Style</title>
+    <style>
+        .classdiv {
+            width: 50%;
+            height: 200px;
+        }
+
+        .div1 {
+            background-color: aqua;
+        }
+
+        .div2 {
+            background-color: blue;
+        }
+
+        .div3 {
+            background-color: aqua;
+            float: left;
+        }
+
+        .div4 {
+            background-color: blue;
+            float: left;
+        }
+
+        .clearLeft {
+            clear: left;
+        }
+
+        .floatRight {
+            float: right;
+        }
+
+        .bottom {
+            padding-top: 100px;
+            box-sizing: border-box;
+        }
+
+        .divInner {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    vertical alignment :
+    <div class="div1 classdiv">
+    </div>
+    <div class="div2 classdiv">
+    </div>
+    <br />
+    horizontal alignment :
+    <br />
+    <div class="div3 classdiv">
+    </div>
+    <div class="div4 classdiv">
+    </div>
+    <div class="clearLeft">
+    </div>
+    <br />
+    horizontal alignment + inner divs top left
+    <br />
+    <br />
+    <div class="div3 classdiv">
+        <div class="divInner"></div>
+    </div>
+    <div class="div4 classdiv">
+        <div class="divInner"></div>
+    </div>
+    <div class="clearLeft">
+    </div>
+    <br />
+    horizontal alignment + inner divs top right 
+    <br />
+    <br />
+    <div class="div3 classdiv">
+        <div class="divInner floatRight"></div>
+    </div>
+    <div class="div4 classdiv">
+        <div class="divInner floatRight"></div>
+    </div>
+    <div class="clearLeft">
+    </div>
+    <br />
+    horizontal alignment + inner divs bottom right
+    <br />
+    <br />
+    <div class="div3 classdiv bottom">
+        <div class="divInner floatRight"></div>
+    </div>
+    <div class="div4 classdiv bottom">
+        <div class="divInner floatRight"></div>
+    </div>
+    <div class="clearLeft">
+    </div>
+    <br />
+    horizontal alignment + inner divs bottom left
+    <br />
+    <br />
+    <div class="div3 classdiv bottom">
+        <div class="divInner "></div>
+    </div>
+    <div class="div4 classdiv bottom">
+        <div class="divInner "></div>
+    </div>
+    <div class="clearLeft">
+    </div>
+    <br />
+</body>
+</html>

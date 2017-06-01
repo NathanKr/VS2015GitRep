@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Challenge</title>
+    <style>
+        .circle_common {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            float: left;
+        }
+
+        #circle_red {
+            background-color: red;
+        }
+
+        #circle_blue {
+            background-color: blue;
+        }
+
+        #circle_yellow {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="circle_red" class="circle_common">
+
+    </div>
+
+    <div id="circle_blue" class="circle_common">
+
+    </div>
+
+    <div id="circle_yellow" class="circle_common">
+
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById("circle_red").onclick = function()
+{
+            document.getElementById("circle_red").style.display = "none";
+}
+
+        document.getElementById("circle_blue").onclick = function()
+{
+            document.getElementById("circle_blue").style.display = "none";
+}
+
+        document.getElementById("circle_yellow").onclick = function()
+{
+            document.getElementById("circle_yellow").style.display = "none";
+}
+
+    </script>
+</body>
+</html>

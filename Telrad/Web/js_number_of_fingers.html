@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>JS</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <p>Insert number of fingers <input id="inputGuess" type="text"></p>
+    <button id="btCheckGuess">
+        Check guess is correct
+    </button>
+
+    <script type="text/javascript">
+			var Guess1_5_random = Math.floor(Math.random() * 6) + 1;
+
+
+			document.getElementById("btCheckGuess").onclick = function()
+			{
+				var nGuessInput = document.getElementById("inputGuess").value;
+				if(Guess1_5_random == nGuessInput)
+				{
+					alert("Guess is correct");
+				}
+				else
+				{
+					alert("Guess is not correct , try again");
+				}
+			}
+
+    </script>
+</body>
+</html>
+

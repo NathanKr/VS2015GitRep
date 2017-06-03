@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <!-- put here left number oper right number
+        oper is : + - * /
+
+    -->
+    Input : <input id="data" type="text" />
+    <br />
+    <button onclick="compute()">Compute</button>
+    <br />
+    <button onclick="clearlastChar()">Clear Last Char</button>
+    <br />
+    Output : <input id="output" type="text" readonly />
+    <script>
+
+    function computeEngine(pos, operation,textObjValue) {
+        var left = parseInt(textObjValue.substr(0, pos+1));
+        var right = parseInt(textObjValue.substr(pos + 1));
+        var val=null;
+        switch (operation) {
+            case '+':
+                val = left+right;
+                break;
+
+            case '-':
+                val = left - right;
+                break;
+
+            case '*':
+                val = left * right;
+                break;
+
+            case '/':
+                if (right !== 0) {
+                    val = left / right;
+                }
+                break;
+        }
+
+        return val;
+    }
+
+    function clearlastChar() {
+        var textObj = document.getElementById('data');
+        if (textObj.value.length > 0) {
+            textObj.value = textObj.value.substring(0, textObj.value.length - 1);
+        }
+    }
+
+    function compute() {
+        var textObj = document.getElementById('data'),
+            outputObj = document.getElementById('output');
+        var value = textObj.value,outputValue;
+        var pos = -1, oper=null;
+
+        if (value.indexOf("*") !== -1) {
+            // -- * is the operation
+            pos = value.indexOf("*");
+            oper = '*';
+        } else if (value.indexOf("/") !== -1) {
+            // -- / is the operation
+            pos = value.indexOf("/");
+            oper = '/';
+        }else if (value.indexOf("+") !== -1) {
+            // -- + is the operation
+            pos = value.indexOf("+");
+            oper = '+';
+        }
+        else if (value.indexOf("-") !== -1) {
+            // -- - is the operation
+            pos = value.indexOf("-");
+            oper = '-';
+        }
+
+        if (pos >= 0) {
+            // valid
+            outputValue = computeEngine(pos, oper, value);
+            if (outputValue != null) {
+                outputObj.value = outputValue;
+            } else {
+                outputObj.value = 'error';
+            }
+        }
+    }
+    </script>
+</body>
+</html>

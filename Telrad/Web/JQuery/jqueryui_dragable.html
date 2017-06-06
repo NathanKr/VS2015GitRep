@@ -1,17 +1,23 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!doctype html>
 <head>
-    <title>jQuery</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
-            integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
-            crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        #draggable {
+            width: 150px;
+            height: 150px;
+            padding: 0.5em;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+  $( function() {
+    $( "#draggable" ).draggable();
+  } );
     </script>
 </head>
 <body>
-    <p id="draggable">Drag me around</p>
-    <script type="text/javascript">
-        $( "#draggable").draggable();
-    </script>
+    <div id="draggable" class="ui-widget-content">
+        <p>Drag me around</p>
+    </div>
 </body>
-</html>

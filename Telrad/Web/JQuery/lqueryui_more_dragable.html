@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+    <style type="text/css">
+        #draggable {
+            width: 100px;
+            height: 50px;
+            padding: 0.5em;
+        }
+
+        #draggableY {
+            width: 100px;
+            height: 50px;
+            padding: 0.5em;
+        }
+
+        #draggable3 {
+            width: 100px;
+            height: 50px;
+            padding: 0.5em;
+        }
+
+        #containment-wrapper {
+            width: 300px;
+            height: 300px;
+            border: 1px black solid;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="draggable" class="ui-widget-content">
+        <p>Drag me around</p>
+    </div>
+
+    <div id="draggableY" class="ui-widget-content">
+        <p>Drag me around y axiz</p>
+    </div>
+
+    <div id="draggable3" class="ui-widget-content">
+        <p>Drag me inside border</p>
+    </div>
+
+    <div id="containment-wrapper">
+    </div>
+
+    <script type="text/javascript">
+
+        $("#draggable").draggable();
+
+        $("#draggableY").draggable({ axis: "y" });
+
+        $("#draggable3").draggable({ containment: "#containment-wrapper", scroll: false });
+
+    </script>
+
+</body>
+</html>
+

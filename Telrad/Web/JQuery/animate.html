@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>JQuery</title>
+    
+    <style type="text/css">
+        #circle {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="circle">
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+		$("#circle").click(function(){
+			$(this).animate({width:"200px"},2000);
+		});
+
+    </script>
+
+</body>
+</html>

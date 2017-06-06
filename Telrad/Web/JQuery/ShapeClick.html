@@ -1,0 +1,54 @@
+﻿
+<!--
+
+   click reaction only for square not circle
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style type="text/css">
+        .shape_common {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            margin: 5px;
+        }
+
+        .square {
+        }
+
+        #circle {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="shape_common" id="circle">
+    </div>
+
+    <div class="shape_common square">
+    </div>
+
+    <div class="shape_common square">
+    </div>
+
+
+    <script type="text/javascript">
+
+
+			$(".square").click(function()
+			{
+				alert("square was clicked");
+			});
+
+    </script>
+
+</body>
+</html>

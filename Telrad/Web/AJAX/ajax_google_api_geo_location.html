@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <button type="button" onclick="loadDoc()">Geo Location Google</button>
+    <p id="demo"></p>
+    <script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+
+
+  var API_KEY = 'PUT HERE GOOGLE API KEY';
+  xhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=" + API_KEY);
+  xhttp.send();
+}
+    </script>
+</body>
+</html>

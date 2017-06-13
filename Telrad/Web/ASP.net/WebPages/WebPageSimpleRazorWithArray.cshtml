@@ -1,6 +1,6 @@
 ﻿@{
-    int [] array = new int[3];
-    for (int i = 0; i < array.Length ; i++)
+    int[] array = new int[3];
+    for (int i = 0; i < array.Length; i++)
     {
         array[i] = i;
     }
@@ -8,13 +8,13 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-    </head>
-    <body>
+<head>
+    <title></title>
+</head>
+<body>
     @foreach (var val in array)
     {
         <p>@val</p>
     }
-    </body>
+</body>
 </html>

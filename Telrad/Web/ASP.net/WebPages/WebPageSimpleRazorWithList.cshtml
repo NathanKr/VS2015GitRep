@@ -1,9 +1,32 @@
-﻿<!DOCTYPE html>
+﻿@{
+    List<int> list = new List<int>();
+    list.Add(39);
+    list.Add(9);
+    list.Add(99);
+    var strtext="";
+}
+
+<!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        
-    </body>
+<head>
+    <title></title>
+</head>
+<body>
+    @foreach (int age in list)
+    {
+        if (age <= 18)
+        {
+            strtext = "rare";
+        }
+        else if (age >= 65)
+        {
+            strtext = "well done";
+        }
+        else
+        {
+            strtext = "medium";
+        }
+        <p>@strtext</p>
+    }
+</body>
 </html>

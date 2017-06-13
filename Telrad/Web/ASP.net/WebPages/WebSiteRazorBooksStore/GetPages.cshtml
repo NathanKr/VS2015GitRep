@@ -1,0 +1,19 @@
+﻿@{
+    var virtualFile = "~/storage/books.txt";
+    var physicalImageFolder = Server.MapPath(virtualFile);
+    string[] fileLine = File.ReadAllLines(physicalImageFolder);
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book store</title>
+</head>
+<body>
+    <ul>
+        @foreach (var book in fileLine)
+        {
+            <li>@book</li>
+        }
+    </ul>
+</body>
+</html>

@@ -1,7 +1,7 @@
 ﻿@{
-    var virtualFile = "~/storage/books.txt";
-    var physicalImageFolder = Server.MapPath(virtualFile);
-    string[] fileLine = File.ReadAllLines(physicalImageFolder);
+    var virtualBooksFile = "~/storage/books.txt";
+    var physicalBooksFile = Server.MapPath(virtualBooksFile);
+    string[] arFileLines = File.ReadAllLines(physicalBooksFile);
 }
 <!DOCTYPE html>
 <html>
@@ -10,9 +10,9 @@
 </head>
 <body>
     <ul>
-        @foreach (var book in fileLine)
+        @foreach (string currentBook in arFileLines)
         {
-            <li>@book</li>
+            <li>@currentBook</li>
         }
     </ul>
 </body>

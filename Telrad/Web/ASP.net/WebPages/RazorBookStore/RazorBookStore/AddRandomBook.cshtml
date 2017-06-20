@@ -1,0 +1,23 @@
+﻿@{
+    var virtualBooksFile = "~/storage/books.txt";
+    var physicalBooksFile = Server.MapPath(virtualBooksFile);
+    string[] arFewBooks = {"Lion King" ,"Harry Potter" , "Bible"};
+
+    Random rand = new Random();
+    int indexArFewBooks = rand.Next(0, arFewBooks.Length);
+
+    using(StreamWriter writer =  File.AppendText(physicalBooksFile) )
+    {
+        writer.WriteLine(arFewBooks[indexArFewBooks]);
+    }
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <p>Book is added</p>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #idNameNotValid {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+@{
+    if (IsPost)
+    {
+        <p>submitted</p>
+    }
+    else
+    {
+        <h1>client side validation using onsubmit</h1>
+        <h2>empty name is not valid</h2>
+
+        <form method="post" action="" onsubmit="return myFunction()">
+            Enter name: <input id="idName" type="text" name="fname"> <br/>
+            <p id="idNameNotValid"></p>
+            <input type="submit" value="Submit">
+        </form>
+
+    }
+}
+
+<script>
+    function myFunction() {
+        var isValid = document.getElementById("idName").value.length > 0;
+        if (!isValid) {
+            document.getElementById("idNameNotValid").innerText = "name is required";
+        }
+        return isValid;
+    }
+
+</script>
+
+</body>
+</html>

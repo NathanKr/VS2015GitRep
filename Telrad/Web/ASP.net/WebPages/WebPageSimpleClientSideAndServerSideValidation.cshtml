@@ -16,6 +16,8 @@
         if (IsPost)
         {
             string name = Request.Form["fname"];
+
+            @* server side validation *@
             if(String.IsNullOrWhiteSpace(name))
             {
                 strNameNotValid = strNameNotValidError + " (server side validation)";
@@ -44,7 +46,8 @@
     }
 
     <script>
-    function myFunction() {
+        function myFunction() {
+        // client side validation
         var isValid = document.getElementById("idName").value.length > 0;
         if (!isValid) {
             document.getElementById("idNameNotValid").innerText =  '@strNameNotValidError' + " (client side validation)";

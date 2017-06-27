@@ -1,4 +1,5 @@
-﻿@model string[]
+﻿@using MVC_empty.Models
+@model List<Book>
 
 <!DOCTYPE html>
 <html>
@@ -7,10 +8,12 @@
     <title>Index</title>
 </head>
 <body>
-        This is Index
-        @foreach (string item in @Model)
+        Books : 
+    <ul>
+        @foreach (Book item in @Model)
         {
-            <p>@item</p>
+            <li>@item.Name</li>
         }
+    </ul>
 </body>
 </html>

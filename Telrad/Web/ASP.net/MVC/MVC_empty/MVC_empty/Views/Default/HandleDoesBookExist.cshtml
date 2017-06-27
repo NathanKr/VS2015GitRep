@@ -1,0 +1,27 @@
+﻿@model bool
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DoesBookExist</title>
+</head>
+<body>
+    
+    @if(@Model)
+    {
+        <p>book exists</p>
+    }
+    else
+    {
+        <p>book does not exist</p>
+    }
+    
+
+</body>
+</html>

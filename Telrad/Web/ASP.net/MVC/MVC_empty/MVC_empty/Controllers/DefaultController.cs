@@ -35,15 +35,14 @@ namespace MVC_empty.Controllers
             return View(listBooks);
         }
 
-        // GET : DoesBookExist
 
-        [HttpGet]
+        [HttpGet] //this is default
         public ActionResult DoesBookExist()
         {
             return View();
         }
 
-        [HttpGet]
+        [HttpGet] //this is default
         public ActionResult HandleDoesBookExist(string name)
         {
             bool bIsValid = name.Length > 0;// --- some kind of validation to show what is done

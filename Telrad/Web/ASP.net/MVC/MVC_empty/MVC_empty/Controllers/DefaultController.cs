@@ -43,16 +43,17 @@ namespace MVC_empty.Controllers
         }
 
         [HttpGet] //this is default
-        public ActionResult HandleDoesBookExist(string name)
+        public ActionResult HandleDoesBookExist(string book_name)
         {
-            bool bIsValid = name.Length > 0;// --- some kind of validation to show what is done
+            bool bIsValid = book_name.Length > 0;// --- some kind of validation to show what is done
+            
 
             if (!bIsValid){
                 ViewBag.Error = "name is not valid";
                 return View("DoesBookExist");
             }
 
-            bool bDoesExist = Utils.DoesBookExist(Server,name);
+            bool bDoesExist = Utils.DoesBookExist(Server, book_name);
 
             return View(bDoesExist);
         }

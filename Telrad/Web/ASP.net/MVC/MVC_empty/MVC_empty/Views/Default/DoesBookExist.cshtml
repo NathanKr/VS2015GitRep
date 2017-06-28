@@ -10,14 +10,13 @@
     <meta name="viewport" content="width=device-width" />
     <title>DoesBookExist</title>
     <style>
-        p {
-            color: red;
+        p {  color: red;
         }
     </style>
 </head>
 <body>
 <form method="get" action="/Default/HandleDoesBookExist">
-    <input type="text" name="name"/>
+    <input type="text" name="book_name"/>
     <p>@ViewBag.Error</p>
     <input type="submit" value="Submit">
 </form >

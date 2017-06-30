@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style>
+        p {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("Login", "Users", FormMethod.Post))
+    {
+        <p>@ViewBag.LoginError</p>
+        <Label>Name : </Label><input type="text" name="userName" />    <br />
+        <Label>Password : </Label><input type="password" name="password"  />    <br />
+        <input type="submit" value="Login" />
+    }
+</body>
+</html>

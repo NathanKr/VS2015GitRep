@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+</head>
+<body>
+    @if (Session["userSessionKey"] != null)
+    {
+        <h2>Welcome @Session["userSessionKey"]</h2>
+    }
+    <br/>
+    <a href="/Users/Login">Login</a>
+    <a href="/Users/Logout">Logout</a>
+</body>
+</html>

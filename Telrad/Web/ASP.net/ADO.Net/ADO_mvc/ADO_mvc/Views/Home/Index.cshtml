@@ -1,0 +1,43 @@
+﻿@using ADO_mvc.Models
+
+@model List<User> 
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>This is index page</p>
+    
+    <form method="post" action="/Home/AddEntry">
+        <Label>First Name : </Label>    
+        <input type="text" name="firstNameUser"/><br/>
+        <Label>Last Name : </Label>  
+        <input type="text" name="lastNameUser" /><br />
+        <input type="submit" value="Add Entry"/>
+    </form>
+
+<p>@ViewBag.error</p>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                </tr>
+            }
+    </table>
+</body>
+</html>

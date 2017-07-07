@@ -44,6 +44,7 @@ namespace ADO_mvc.Logic
             }
         }
 
+
         public static int AddEntry(string firstNameUser, string lastNameUser, string strConnectionString)
         {
             int rowsAffected = 0;
@@ -51,7 +52,7 @@ namespace ADO_mvc.Logic
             {
                 connection.Open();
                 StringBuilder sb = new StringBuilder();
-                sb.Append("INSERT INTO Table1 ([FirstName], [LastName]) ");
+                sb.Append("INSERT INTO Table1 (FirstName, LastName) ");
                 sb.Append("VALUES (@firstName, @lastName);");
                 String sql = sb.ToString();
 

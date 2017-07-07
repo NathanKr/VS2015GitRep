@@ -52,13 +52,13 @@ namespace ADO_mvc.Logic
                 connection.Open();
                 StringBuilder sb = new StringBuilder();
                 sb.Append("INSERT INTO Table1 ([FirstName], [LastName]) ");
-                sb.Append("VALUES (@FirstName, @LastName);");
+                sb.Append("VALUES (@firstName, @lastName);");
                 String sql = sb.ToString();
 
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@FirstName", firstNameUser);
-                    command.Parameters.AddWithValue("@LastName", lastNameUser);
+                    command.Parameters.AddWithValue("@firstName", firstNameUser);
+                    command.Parameters.AddWithValue("@lastName", lastNameUser);
                     rowsAffected = command.ExecuteNonQuery();
                 }
             }

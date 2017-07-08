@@ -12,7 +12,7 @@ namespace SimpleConsoleLINQ
         {
             string[] words = { "hello", "world", "this" ,"is" ,"LINQ" };
             //Get only short words
-            var shortWords = from word in words
+            IEnumerable<string>  shortWords = from word in words
                              where word.Length <= 4
                              select word;
 

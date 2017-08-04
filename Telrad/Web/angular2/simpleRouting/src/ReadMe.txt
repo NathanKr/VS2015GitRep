@@ -1,0 +1,1 @@
+simple routing for angular 2 using HomeComponent and CitiesComponent

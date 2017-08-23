@@ -6,7 +6,12 @@ The purpose is to show how tables and classes are created automatically follwing
 	- Add-Migration
 	- Update-Database
 
-I have done BlogController with Index and Create Actions and matching Views
+I have implemented Create\Read actions for one controller to show how one can access 
+	tables and perform operations on them
+
+
+I have done BlogController with Index and Create Actions and matching Views 
+	(although view are not the issue here because EF is Backhand issue not Fronthand)
 
 Blogs list are accessible via Home/Index 
 Add Blog is possible from Blogs/Index

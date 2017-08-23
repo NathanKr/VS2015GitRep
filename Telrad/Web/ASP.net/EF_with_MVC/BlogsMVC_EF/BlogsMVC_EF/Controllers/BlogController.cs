@@ -19,8 +19,7 @@ namespace BlogsMVC_EF.Controllers
             return View(blogs);
         }
 
-        [HttpGet]
-        public ActionResult Create()
+        [HttpGet] public ActionResult Create()
         {
             Blog blog = null;
 

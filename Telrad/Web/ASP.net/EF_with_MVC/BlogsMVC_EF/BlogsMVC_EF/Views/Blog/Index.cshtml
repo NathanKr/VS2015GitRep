@@ -1,0 +1,16 @@
+﻿@using BlogsMVC_EF.Models.Models
+@model IEnumerable<Blog>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Blog Index</h2>
+
+<a href="/Blog/Create">Add</a>
+
+@foreach (var item in Model)
+{
+    <p>@item.Title</p>
+}
+

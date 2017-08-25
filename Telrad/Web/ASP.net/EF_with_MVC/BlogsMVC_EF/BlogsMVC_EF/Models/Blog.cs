@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BlogsMVC_EF.Models.Models
+namespace BlogsMVC_EF.Models
 {
     public class Blog
     {

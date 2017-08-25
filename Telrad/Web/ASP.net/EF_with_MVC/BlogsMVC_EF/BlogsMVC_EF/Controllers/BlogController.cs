@@ -1,5 +1,4 @@
 ﻿using BlogsMVC_EF.Models;
-using BlogsMVC_EF.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +40,37 @@ namespace BlogsMVC_EF.Controllers
             return View(blog);
         }
 
+        [HttpGet]
+        public ActionResult Edit(long id)
+        {
+            Blog blog = m_db.Blogs.FirstOrDefault(blg => blg.Id == id);
+            if (blog == null) { return HttpNotFound(); }
+            return View(blog);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(long id, string title)
+        {
+            Blog blog = m_db.Blogs.FirstOrDefault(blg => blg.Id == id);
+            if (blog == null) { return HttpNotFound(); }
+            blog.Title = title; m_db.SaveChanges(); return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(long id)
+        {
+            Blog blog = m_db.Blogs.FirstOrDefault(blg => blg.Id == id);
+            if (blog == null) { return HttpNotFound(); }
+            m_db.Blogs.Remove(blog);
+            m_db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {

@@ -241,3 +241,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /MVC_Agular
+/Telrad/Web/ASP.net/MVC/MVC_Angular_Hello_World

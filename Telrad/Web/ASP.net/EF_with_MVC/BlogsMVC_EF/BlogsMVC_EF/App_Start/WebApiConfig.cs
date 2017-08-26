@@ -10,9 +10,6 @@ namespace BlogsMVC_EF
     {
         public static void Register(HttpConfiguration config)
         {
-            var cors = new EnableCorsAttribute("http://localhost:50781", "*", "*");
-            config.EnableCors(cors);
-
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

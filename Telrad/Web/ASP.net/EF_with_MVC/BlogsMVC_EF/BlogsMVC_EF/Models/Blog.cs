@@ -7,6 +7,6 @@ namespace BlogsMVC_EF.Models
         public long Id { get; set; }//primary key
         public string Title { get; set; }
 
-        public virtual ICollection<Post> Posts { get; set; }
+       // this cause web api problem public virtual ICollection<Post> Posts { get; set; } 
     }
 }

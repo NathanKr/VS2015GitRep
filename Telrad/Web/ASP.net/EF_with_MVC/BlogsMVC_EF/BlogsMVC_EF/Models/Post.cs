@@ -12,6 +12,7 @@ namespace BlogsMVC_EF.Models
         public string Content { get; set; }
 
         public long BlogId { get; set; }//forign key
-        public virtual Blog Blog { get; set; }
+
+        //public virtual Blog Blog { get; set; }
     }
 }

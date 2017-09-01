@@ -1,0 +1,74 @@
+<button (click)="GetBlogs()">Get Blogs</button>
+<button (click)="AddBlogClickHandler()">Add Blog</button>
+
+
+<div *ngIf="IsEditBlogStatus()" class="container">
+ <h1>Edit Blog</h1>
+ <form #trvFormEditBlog="ngForm" (ngSubmit)="SubmitEditBlogFormHandler(trvFormEditBlog)">
+ <div class="form-group">
+ <label for="idEditBlogTitle">Title</label>
+ <input id="idEditBlogTitle" name="Title" type="text"
+ class="form-control" required
+ [(ngModel)]="blogTitle" #trvEditBlogTitle="ngModel">
+ <div *ngIf="trvEditBlogTitle.errors && (trvEditBlogTitle.dirty || trvEditBlogTitle.touched)"
+ class="alert alert-danger">
+ <div [hidden]="!trvEditBlogTitle.errors.required">Title is required</div>
+ </div>
+ </div>
+ <div class="form-group">
+ <label for="idEditBlogDescription">Description</label>
+ <input id="idEditBlogDescription" name="Description" type="text"
+ class="form-control" required
+ [(ngModel)]="blogDescription" #trvEditBlogDescription="ngModel">
+ <div *ngIf="trvEditBlogDescription.errors && (trvEditBlogDescription.dirty || trvEditBlogDescription.touched)"
+ class="alert alert-danger">
+ <div [hidden]="!trvEditBlogDescription.errors.required">Desciption is required</div>
+ </div>
+ </div>
+ <button [disabled]="!trvFormEditBlog.valid" class="btn btn-primary">Edit Blog</button>
+ </form>
+</div>
+
+
+<div *ngIf="IsAddBlogStatus()" class="container">
+ <h1>Add Blog</h1>
+ <form #trvFormAddBlog="ngForm" (ngSubmit)="SubmitAddBlogFormHandler(trvFormAddBlog)">
+ <div class="form-group">
+ <label for="idAddBlogTitle">Title</label>
+ <input id="idAddBlogTitle" name="Title" type="text"
+ class="form-control" required
+ [(ngModel)]="blogTitle" #trvAddBlogTitle="ngModel">
+ <div *ngIf="trvAddBlogTitle.errors && (trvAddBlogTitle.dirty || trvAddBlogTitle.touched)"
+ class="alert alert-danger">
+ <div [hidden]="!trvAddBlogTitle.errors.required">Title is required</div>
+ </div>
+ </div>
+ <div class="form-group">
+ <label for="idAddBlogDescription">Description</label>
+ <input id="idAddBlogDescription" name="Description" type="text"
+ class="form-control" required
+ [(ngModel)]="blogDescription" #trvAddBlogDescription="ngModel">
+ <div *ngIf="trvAddBlogDescription.errors && (trvAddBlogDescription.dirty || trvAddBlogDescription.touched)"
+ class="alert alert-danger">
+ <div [hidden]="!trvAddBlogDescription.errors.required">Desciption is required</div>
+ </div>
+ </div>
+ <button [disabled]="!trvFormAddBlog.valid" class="btn btn-primary">Add Blog</button>
+ </form>
+</div>
+
+<table *ngIf="IsGetAllStatus()" style="width:100%">
+  <tr>
+    <th>Id</th>
+    <th>Title</th> 
+    <th>Description</th>
+  </tr>
+  <tr *ngFor="let blg of arBlogs; let i = index;">
+    <td>{{blg.Id}}</td>
+    <td>{{blg.Title}}</td> 
+    <td>{{blg.Description}}</td>
+    <td><span (click)="DeleteBlog(blg.Id , i)" class="glyphicon glyphicon-remove"></span></td>
+    <td><span  (click)="EditBlog(blg.Id , i)" class="glyphicon glyphicon-edit"></span></td>
+  </tr>
+</table>
+

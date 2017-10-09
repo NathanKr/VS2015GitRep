@@ -8,7 +8,7 @@ namespace ConsoleAppDelegate
 {
     class Program
     {
-        public delegate int BasicOperation(int num1, int num2);
+         delegate int BasicOperation(int num1, int num2);
 
         static int Add(int a, int b){
             return a + b;

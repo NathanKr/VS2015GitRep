@@ -27,7 +27,7 @@ namespace ConsoleXmlSerializable
                 using (StringReader stringReader = new StringReader(xml))
                 {
                     Person p = (Person)serializer.Deserialize(stringReader);
-                    Console.WriteLine("desrialized person age : {0}",p.Age);
+                    Console.WriteLine("deserialized person age : {0}", p.Age);
                 }
 
                 Console.ReadKey();

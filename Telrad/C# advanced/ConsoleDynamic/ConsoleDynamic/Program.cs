@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +15,11 @@ namespace ConsoleDynamic
             a = 1;
             a++;
             Console.WriteLine(a);
+            a = "hello";
+            a += " world";
+            Console.WriteLine(a);
             Console.ReadKey();
         }
+
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleEvents
+namespace ConsoleEventWithKeyword
 {
     class Program
     {
@@ -14,7 +14,7 @@ namespace ConsoleEvents
             pub.OnChanged += () => { Console.WriteLine("handle 1 event"); };
             pub.OnChanged += () => { Console.WriteLine("handle 2 event"); };
 
-            pub.OnChanged();
+            pub.RaiseEvent();
 
             Console.ReadKey();
         }

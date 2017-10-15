@@ -9,13 +9,5 @@ namespace ConsoleEvents
     class Publish
     {
         public Action OnChanged { get; set; }
-
-        public void RaiseEvent()
-        {
-            if(OnChanged != null)
-            {
-                OnChanged();
-            }
-        }
     }
 }

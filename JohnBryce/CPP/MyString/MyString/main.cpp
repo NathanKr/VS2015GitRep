@@ -17,11 +17,7 @@ void F(const CustomString & refS)
 
 
 
-CustomString CreateCustomeString(const char * p)
-{
-	CustomString s(p); // copy constructor
-	return s;
-}
+
 
 void PassByValue(CustomString s) // copy constructor
 {
@@ -33,10 +29,12 @@ int main()
 	// *** constructor --> new object is created *** 
 	CustomString s("123") ,s3 , s4; 
 
-	// *** copy constructor --> new object is created from existing object*** 
-	CustomString s2 = s; // copy constructor used in assignment 
 
-	s4 = CreateCustomeString("hello"); //copy constructor used in assignment 
+	// *** copy constructor --> new object is created from existing object*** 
+
+	CustomString s5(s); // copy constructor is used
+
+	CustomString s2 = s; // copy constructor used in assignment 
 
 	PassByValue(s4); //copy constructor used in assignment of function argument
 

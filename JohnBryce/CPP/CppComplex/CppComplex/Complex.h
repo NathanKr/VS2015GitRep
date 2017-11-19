@@ -20,13 +20,16 @@ public:
 	/*
 	 operator << overloading
 
-	 NOTICE << is performed on ostream e.g. cout << c1 << endl;  NOT on complex  !!!
+	 NOTICE << is performed on ostream os e.g. cout << obj ;  NOT on complex  !!!
 	 so operator << does not belong to class complex
+
+	 NOTICE the return value is ostream & so we can do  e.g. cout << obj << endl;
+
 	 friend allow to access private
 
 	 */
 
-	friend ostream & operator <<(ostream&, const Complex & os);
+	friend ostream & operator << (ostream & os, const Complex & obj);
 
 private:
 	double m_fReal;

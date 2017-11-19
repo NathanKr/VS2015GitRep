@@ -25,7 +25,8 @@ public:
 
 	 NOTICE the return value is ostream & so we can do  e.g. cout << obj << endl;
 
-	 friend allow to access private
+	 friend allow to access private but more importantly used here to invoke << on 
+	 ostream object not Complex object
 
 	 */
 

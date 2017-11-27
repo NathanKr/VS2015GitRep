@@ -1,7 +1,20 @@
 #include "PersonsPtr.h"
+#include "IAggregate.h"
 #include <iostream>
 
 using namespace std;
+
+// --- show generic Person * container
+void Show(IAggregate * obj)
+{
+	IIterator * p_iterator = obj->CreateIterator();
+
+	while (p_iterator->HasNext())
+	{
+		Person * p_person = (Person *)p_iterator->Next();
+		cout << p_person->GetName() << endl;
+	}
+}
 
 int main()
 {
@@ -11,15 +24,8 @@ int main()
 	objPersonsPtr.PushBack(&p1);
 	objPersonsPtr.PushBack(&p2);
 
-	IIterator * p_iterator = objPersonsPtr.CreateIterator();
+	Show(&objPersonsPtr);
 
-	while (p_iterator->HasNext())
-	{
-		Person * p_person = (Person *)p_iterator->Next();
-		cout << p_person->GetName() << endl;
-	}
-
-	
 
 	return 0;
 }

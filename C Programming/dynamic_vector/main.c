@@ -3,6 +3,8 @@
 #include <stdbool.h>
 
 
+// some comment added 6/12/2017
+
 int * initIntArray(int nArraySize)
 {
     int * ar = malloc(nArraySize*sizeof(int));

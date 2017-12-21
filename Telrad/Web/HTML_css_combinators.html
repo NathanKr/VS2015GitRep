@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        p{
+            width:300px;
+            height:150px;
+            border:3px solid green;
+        }
+
+        /* refer to all p inside div - descendant */
+        div p { 
+                background-color: aqua;
+            }
+
+        /* refer only to span childs of div*/
+        p > span {
+            text-decoration: underline;
+        }   
+
+    </style>
+</head>
+<body>
+   <!--sample of div p--> 
+    <p></p>
+    <div>
+        <p></p>
+    </div>
+    
+    <!--sample of p > span --> 
+    <span>NOT underline - span is NOT child of p</span>
+    <p>
+        <span>underline - span is child of p</span>
+        <div>
+            <span>NOT underline - span is NOT child of p</span>
+        </div>
+    </p>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            border:2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="btnClickHandler()">Add Div</button>
+
+    <script>
+        var counter = 0;
+
+        function btnClickHandler()
+        {
+            var elem = document.createElement('div');
+            if ((counter % 2) == 0)
+            {
+                elem.style.backgroundColor = 'aqua';
+            }
+            else {
+                elem.style.backgroundColor = "green";
+            }
+            document.body.appendChild(elem);
+            elem.innerText = counter;
+            elem.setAttribute('id', "id" + counter);//elem.id = "id" + counter can also be used
+            counter++;
+        }
+    </script>
+</body>
+</html>

@@ -28,9 +28,11 @@
             else {
                 elem.style.backgroundColor = "green";
             }
+            // add element to body
             document.body.appendChild(elem);
             elem.innerText = counter;
-            elem.setAttribute('id', "id" + counter);//elem.id = "id" + counter can also be used
+            //elem.id = "id" + counter can also be used
+            elem.setAttribute('id', "id" + counter);
             counter++;
         }
     </script>
